@@ -1,0 +1,21 @@
+<div class="card">
+    <h5 class="card-header">ACI Domains</h5>
+    <div class="card-body">
+        {% if domain_table %}
+        <div class="row">
+            <div class="col col-md-12">
+                <div class="card">
+                    <h5 class="card-header">Associated Domains</h5>
+                    <div class="card-body table-responsive">
+                        {% for domain in domain_table %}
+                        <tr>
+                            <td>{{ domain|linkify }}</td><br>
+                        </tr>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>

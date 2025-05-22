@@ -1,0 +1,37 @@
+<div class="card">
+    <h5 class="card-header">EPG/ESG Collection for VRF</h5>
+    <div class="card-body">
+        {% if vrf_consume_table %}
+        <div class="row">
+            <div class="col col-md-12">
+                <div class="card">
+                    <h5 class="card-header">Associated Contracts Consume</h5>
+                    <div class="card-body table-responsive">
+                        {% for cons in vrf_consume_table %}
+                        <tr>
+                            <td>{{ cons|linkify }}</td><br>
+                        </tr>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if vrf_provide_table %}
+        <div class="row">
+            <div class="col col-md-12">
+                <div class="card">
+                    <h5 class="card-header">Associated Contracts Provide</h5>
+                    <div class="card-body table-responsive">
+                        {% for prov in vrf_provide_table %}
+                        <tr>
+                            <td>{{ prov|linkify }}</td><br>
+                        </tr>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>

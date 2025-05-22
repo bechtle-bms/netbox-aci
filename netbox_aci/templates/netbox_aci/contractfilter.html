@@ -1,0 +1,67 @@
+{% extends 'generic/object.html' %}
+{% load i18n %}
+
+{% block extra_controls %}
+<div class="dropdown">
+  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="mdi mdi-plus-thick" aria-hidden="true"></i> {% trans "Entry" %}
+  </button>
+  <ul class="dropdown-menu">
+      <li>
+        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=ip" class="dropdown-item">
+          <span class="mdi" aria-hidden="true"></span> IP
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=ipv6" class="dropdown-item">
+          <span class="mdi" aria-hidden="true"></span> IPv6
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=ipv4" class="dropdown-item">
+          <span class="mdi" aria-hidden="true"></span> IPv4
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=mpls_unicast" class="dropdown-item">
+          <span class="mdi" aria-hidden="true"></span> MPLS Unicast
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=unspecified" class="dropdown-item">
+          <span class="mdi" aria-hidden="true"></span> Unspecified
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=trill" class="dropdown-item">
+          <span class="mdi" aria-hidden="true"></span> Trill
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=arp" class="dropdown-item">
+          <span class="mdi" aria-hidden="true"></span> ARP
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=fcoe" class="dropdown-item">
+          <span class="mdi" aria-hidden="true"></span> FCOE
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=mac_security" class="dropdown-item">
+          <span class="mdi" aria-hidden="true"></span> MAC Security
+        </a>
+      </li>
+  </ul>
+</div>
+{% endblock extra_controls %}
+
+{% block content %}
+    <div class="row mb-3">
+        <div class="col col-md-6">
+            {% include "./default_object.html" with object_id='Contract Filter' %}
+            {% include "./contractfilter_details.html" %}
+        </div>
+    </div>
+    {% include "./netbox_includes.html" %}
+{% endblock content %}

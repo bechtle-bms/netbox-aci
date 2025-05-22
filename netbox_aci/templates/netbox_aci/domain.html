@@ -1,0 +1,11 @@
+{% extends 'generic/object.html' %}
+
+{% block content %}
+    <div class="row mb-3">
+        <div class="col col-md-6">
+            {% include "./default_object.html" with object_id='Domain' %}
+            {% include "./domain_details.html" %}
+        </div>
+    </div>
+    {% include "./netbox_includes.html" %}
+{% endblock content %}

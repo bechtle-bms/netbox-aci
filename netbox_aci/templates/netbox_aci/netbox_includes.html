@@ -1,0 +1,9 @@
+{% load plugins %}
+
+<div class="col col-md-6">
+    {% include 'inc/panels/comments.html' %}
+</div>
+<div class="col col-md-5">
+    {% include 'inc/panels/related_objects.html' %}
+    {% plugin_right_page object %}
+</div>

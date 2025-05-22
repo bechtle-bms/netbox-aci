@@ -1,0 +1,80 @@
+<div class="card">
+    <h5 class="card-header">Relations</h5>
+    <div class="card-body">
+        <table class="table table-hover attr-table">
+            <tr>
+                <th scope="row">Application Profile</th>
+                <td>{{ object.applicationprofile|linkify }}</td>
+            </tr>
+            <tr>
+                <th scope="row">VRF</th>
+                <td>{{ object.vrf|linkify }}</td>
+            </tr>          
+        </table>
+    </div>
+</div>
+
+{% if contract_consume_table %}
+<div class="card">
+    <h5 class="card-header">Associated Contracts Consume</h5>
+    <div class="card-body">
+        {% for cons in contract_consume_table %}
+            <tr>
+                <td>{{ cons|linkify }}</td><br>
+            </tr>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% if contract_provide_table %}
+<div class="card">
+    <h5 class="card-header">Associated Contracts Provide</h5>
+    <div class="card-body">
+        {% for prov in contract_provide_table %}
+            <tr>
+                <td>{{ prov|linkify }}</td><br>
+            </tr>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% if epg_selector_table %}
+<div class="card">
+    <h5 class="card-header">EPG Selector</h5>
+    <div class="card-body">
+        {% for epg_sel in epg_selector_table %}
+            <tr>
+                <td>{{ epg_sel|linkify }}</td><br>
+            </tr>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% if ip_subnet_selector_table %}
+<div class="card">
+    <h5 class="card-header">IP Subnet Selector</h5>
+    <div class="card-body">
+        {% for ip_sub_sel in ip_subnet_selector_table %}
+            <tr>
+                <td>{{ ip_sub_sel|linkify }}</td><br>
+            </tr>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% if tag_selector_table %}
+<div class="card">
+    <h5 class="card-header">Tag Selector</h5>
+    <div class="card-body">
+        {% for tag_sel in tag_selector_table %}
+            <tr>
+                <td>{{ tag_sel|linkify }}</td><br>
+            </tr>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}

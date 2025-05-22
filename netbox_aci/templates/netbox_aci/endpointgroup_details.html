@@ -1,0 +1,67 @@
+<div class="card">
+    <h5 class="card-header">Relations</h5>
+    <div class="card-body">
+        <table class="table table-hover attr-table">
+            <tr>
+                <th scope="row">Application Profile</th>
+                <td>{{ object.applicationprofile|linkify }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Bridge Domain</th>
+                <td>{{ object.bridgedomain|linkify }}</td>
+            </tr>          
+        </table>
+    </div>
+</div>
+
+{% if domain_table %}
+<div class="card">
+    <h5 class="card-header">Associated Domains</h5>
+    <div class="card-body">
+        {% for dom in domain_table %}
+            <tr>
+                <td>{{ dom|linkify }}</td><br>
+            </tr>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% if contract_consume_table %}
+<div class="card">
+    <h5 class="card-header">Associated Contracts Consume</h5>
+    <div class="card-body">
+        {% for cons in contract_consume_table %}
+            <tr>
+                <td>{{ cons|linkify }}</td><br>
+            </tr>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% if contract_provide_table %}
+<div class="card">
+    <h5 class="card-header">Associated Contracts Provide</h5>
+    <div class="card-body">
+        {% for prov in contract_provide_table %}
+            <tr>
+                <td>{{ prov|linkify }}</td><br>
+            </tr>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% if subnet_table %}
+<div class="card">
+    <h5 class="card-header">Associated Subnets</h5>
+    <div class="card-body">
+        {% for pref in subnet_table %}
+            <tr>
+                <td>{{ pref|linkify }}</td><br>
+            </tr>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}

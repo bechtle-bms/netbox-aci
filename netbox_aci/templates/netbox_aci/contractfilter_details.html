@@ -1,0 +1,28 @@
+{% load render_table from django_tables2 %}
+
+<div class="card">
+    <h5 class="card-header">Options</h5>
+    <div class="card-body">
+        <table class="table table-hover attr-table">
+            {% if object.directives %}
+            <tr>
+                <th scope="row">Directives</th>
+                <td>{{ object.directives }}</td>
+            </tr>
+            {% endif %}
+            {% if object.action %}
+            <tr>
+                <th scope="row">Action</th>
+                <td>{{ object.action }}</td>
+            </tr>
+            {% endif %}
+        </table>
+    </div>
+</div>
+
+<div class="card">
+    <h5 class="card-header">Filter Entries</h5>
+    <div class="card-body">
+        {% render_table filter_entry_table %}
+    </div>
+</div>

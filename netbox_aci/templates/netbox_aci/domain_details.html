@@ -1,0 +1,27 @@
+<div class="card">
+    <h5 class="card-header">Options</h5>
+    <div class="card-body">
+        <table class="table table-hover attr-table">
+            <tr>
+                <th scope="row">Domain Type</th>
+                <td>{{ object.domain_type }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="card">
+    <h5 class="card-header">Relations</h5>
+    <div class="card-body">
+        <table class="table table-hover attr-table">
+            <tr>
+                <th scope="row">Vlan Pool</th>
+                <td>{{ object.vlan_pool|linkify }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Pool Allocation Mode</th>
+                <td>{{ object.pool_allocation_mode }}</td>
+            </tr>          
+        </table>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+{% block extra_controls %}
+<div class="pull-right noprint">
+    <a href="{% url 'plugins:netbox_aci:policygroupassignement_add' %}?device={{ object.pk }}&interface={{ object.pk }}" class="btn btn-success">
+        <span class="mdi mdi-plus-thick" aria-hidden="true"></span> Add IPG
+    </a>
+</div>
+{% endblock extra_controls %}

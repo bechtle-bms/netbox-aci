@@ -1,0 +1,36 @@
+{% load render_table from django_tables2 %}
+
+<div class="card">
+    <h5 class="card-header">Options</h5>
+    <div class="card-body">
+        <table class="table table-hover attr-table">
+            {% if object.target_dscp %}
+            <tr>
+                <th scope="row">Target DSCP</th>
+                <td>{{ object.target_dscp }}</td>
+            </tr>
+            {% endif %}
+            {% if object.qos_priority %}
+            <tr>
+                <th scope="row">QoS Priority</th>
+                <td>{{ object.qos_priority }}</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <th scope="row">Apply Both Directions</th>
+                <td>{{ object.apply_both_directions }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Reverse Filter Ports</th>
+                <td>{{ object.reverse_filter_ports }}</td>
+            </tr>                        
+        </table>
+    </div>
+</div>
+
+<div class="card">
+    <h5 class="card-header">Subject Filters</h5>
+    <div class="card-body">
+        {% render_table filter_table %}
+    </div>
+</div>

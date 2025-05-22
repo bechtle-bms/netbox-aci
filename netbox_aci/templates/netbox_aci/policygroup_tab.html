@@ -1,0 +1,22 @@
+{% extends 'generic/object.html' %}
+
+{% block content %}
+<div class="row mb-3">
+    {% if ipg_table %}
+    <div class="row">
+        <div class="col col-md-12">
+            <div class="card">
+                <h5 class="card-header">Associated IPGs</h5>
+                <div class="card-body table-responsive">
+                    {% for ipg in ipg_table %}
+                    <tr>
+                        <td>{{ ipg|linkify }}</td><br>
+                    </tr>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock content %}

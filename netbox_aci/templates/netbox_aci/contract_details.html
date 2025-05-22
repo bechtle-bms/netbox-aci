@@ -1,0 +1,60 @@
+{% load render_table from django_tables2 %}
+
+<div class="card">
+    <h5 class="card-header">Options</h5>
+    <div class="card-body">
+        <table class="table table-hover attr-table">
+            {% if object.scope %}
+            <tr>
+                <th scope="row">Scope</th>
+                <td>{{ object.scope }}</td>
+            </tr>
+            {% endif %}
+            {% if object.qos_class %}
+            <tr>
+                <th scope="row">QoS Class</th>
+                <td>{{ object.qos_class }}</td>
+            </tr>
+            {% endif %}
+            {% if object.target_dscp %}
+            <tr>
+                <th scope="row">Target DSCP</th>
+                <td>{{ object.target_dscp }}</td>
+            </tr>
+            {% endif %}
+        </table>
+    </div>
+</div>
+
+{% if vrf_consume_table %}
+<div class="card">
+    <h5 class="card-header">Related VRFs Consume</h5>
+    <div class="card-body">
+        {% for cons in vrf_consume_table %}
+            <tr>
+                <td>{{ cons|linkify }}</td><br>
+            </tr>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% if vrf_provide_table %}
+<div class="card">
+    <h5 class="card-header">Related VRFs Provide</h5>
+    <div class="card-body">
+        {% for prov in vrf_provide_table %}
+            <tr>
+                <td>{{ prov|linkify }}</td><br>
+            </tr>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<div class="card">
+    <h5 class="card-header">Contract Subjects</h5>
+    <div class="card-body">
+        {% render_table subject_table %}
+    </div>
+</div>

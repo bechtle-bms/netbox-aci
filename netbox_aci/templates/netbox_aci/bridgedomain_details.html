@@ -1,0 +1,57 @@
+<div class="card">
+  <h5 class="card-header">Options</h5>
+  <div class="card-body">
+      <table class="table table-hover attr-table">
+          <tr>
+              <th scope="row">L2 Unknown Unicast</th>
+              <td>{{ object.l2_unknown_unicast }}</td>
+          </tr>
+          <tr>
+              <th scope="row">ARP Flooding</th>
+              <td>{{ object.arp_flooding }}</td>
+          </tr>
+          <tr>
+              <th scope="row">Unicast Routing</th>
+              <td>{{ object.unicast_routing }}</td>
+          </tr>
+      </table>
+  </div>
+</div>
+
+<div class="card">
+    <h5 class="card-header">Relations</h5>
+    <div class="card-body">
+        <table class="table table-hover attr-table">
+            <tr>
+                <th scope="row">VRF</th>
+                <td>{{ object.vrf|linkify }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+{% if subnet_table %}
+<div class="card">
+    <h5 class="card-header">Associated Subnets</h5>
+    <div class="card-body">
+        {% for pref in subnet_table %}
+            <tr>
+                <td>{{ pref|linkify }}</td><br>
+            </tr>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% if l3out_table %}
+<div class="card">
+    <h5 class="card-header">Associated L3Outs</h5>
+    <div class="card-body">
+        {% for out in l3out_table %}
+            <tr>
+                <td>{{ out|linkify }}</td><br>
+            </tr>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}

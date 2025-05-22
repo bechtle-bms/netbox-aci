@@ -1,0 +1,26 @@
+{% load render_table from django_tables2 %}
+
+<div class="card">
+    <h5 class="card-header">Relations</h5>
+    <div class="card-body">
+        <table class="table table-hover attr-table">
+            <tr>
+                <th scope="row">AAEP</th>
+                <td>{{ object.aaep|linkify }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Link Level Policy</th>
+                <td>{{ object.linklevel|linkify }}</td>
+            </tr>          
+        </table>
+    </div>
+</div>
+
+{% if ipgassignement_table %}
+<div class="card">
+    <h5 class="card-header">IPG Assignements</h5>
+    <div class="card-body">
+        {% render_table ipgassignement_table %}
+    </div>
+</div>
+{% endif %}

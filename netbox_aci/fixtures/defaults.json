@@ -1,0 +1,116 @@
+[
+{
+  "model": "extras.customfield",
+  "pk": 1,
+  "fields": {
+      "type": "boolean",
+      "related_object_type": null,
+      "name": "gateway",
+      "label": "Gateway",
+      "group_name": "",
+      "description": "",
+      "required": false,
+      "unique": false,
+      "search_weight": 1000,
+      "filter_logic": "loose",
+      "default": false,
+      "related_object_filter": null,
+      "weight": 100,
+      "validation_minimum": null,
+      "validation_maximum": null,
+      "validation_regex": "",
+      "choice_set": null,
+      "ui_visible": "always",
+      "ui_editable": "yes",
+      "is_cloneable": false,
+      "comments": "",
+      "object_types": [
+          77
+      ]
+  }
+},
+{
+    "model": "netbox_aci.linklevel",
+    "pk": 1,
+    "fields": {
+        "name": "system-link-level-1G-auto",
+        "slug": "systemlinklevel1gauto",
+        "description": "",
+        "comments": "",
+        "negotiation": "on",
+        "speed": "1gbps"
+    }
+},
+{
+    "model": "netbox_aci.linklevel",
+    "pk": 2,
+    "fields": {
+        "name": "system-link-level-10G-auto",
+        "slug": "systemlinklevel10gauto",
+        "description": "",
+        "comments": "",
+        "negotiation": "on",
+        "speed": "10gbps"
+    }
+},
+{
+    "model": "netbox_aci.linklevel",
+    "pk": 3,
+    "fields": {
+        "name": "system-link-level-25G-auto",
+        "slug": "systemlinklevel25gauto",
+        "description": "",
+        "comments": "",
+        "negotiation": "on",
+        "speed": "25gbps"
+    }
+},
+{
+    "model": "netbox_aci.linklevel",
+    "pk": 4,
+    "fields": {
+        "name": "system-link-level-40G-auto",
+        "slug": "systemlinklevel40gauto",
+        "description": "",
+        "comments": "",
+        "negotiation": "on",
+        "speed": "40gbps"
+    }
+},
+{
+    "model": "netbox_aci.linklevel",
+    "pk": 5,
+    "fields": {
+        "name": "system-link-level-100G-auto",
+        "slug": "systemlinklevel100gauto",
+        "description": "",
+        "comments": "",
+        "negotiation": "on",
+        "speed": "100gbps"
+    }
+},
+{
+    "model": "netbox_aci.linklevel",
+    "pk": 6,
+    "fields": {
+        "name": "system-link-level-400G-auto",
+        "slug": "systemlinklevel400gauto",
+        "description": "",
+        "comments": "",
+        "negotiation": "on",
+        "speed": "400gbps"
+    }
+},
+{
+    "model": "netbox_aci.linklevel",
+    "pk": 7,
+    "fields": {
+        "name": "system-link-level-100M-auto",
+        "slug": "systemlinklevel100mauto",
+        "description": "",
+        "comments": "",
+        "negotiation": "on",
+        "speed": "100mbps"
+    }
+}
+]

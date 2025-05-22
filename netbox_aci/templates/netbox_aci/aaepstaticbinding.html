@@ -1,0 +1,35 @@
+{% extends 'generic/object.html' %}
+
+{% block content %}
+    <div class="row mb-3">
+        <div class="col col-md-6">
+            <div class="card">
+                <h5 class="card-header">AAEP Static Binding</h5>
+                <div class="card-body">
+                    <table class="table table-hover attr-table">
+                        <tr>
+                            <th scope="row">Tenant</th>
+                            <td>{{ object.tenant }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Application Profile</th>
+                            <td>{{ object.applicationprofile }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">EPG</th>
+                            <td>{{ object.epg }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Encapsulation</th>
+                            <td>{{ object.encap }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Mode</th>
+                            <td>{{ object.mode }}</td>
+                        </tr>            
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

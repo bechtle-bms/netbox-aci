@@ -1,0 +1,38 @@
+{% extends 'generic/object.html' %}
+
+{% block content %}
+<div class="row mb-3">
+    {% if vrf_consume_table %}
+    <div class="row">
+        <div class="col col-md-12">
+            <div class="card">
+                <h5 class="card-header">Associated Contracts Consume</h5>
+                <div class="card-body table-responsive">
+                    {% for consume in vrf_consume_table %}
+                    <tr>
+                        <td>{{ consume|linkify }}</td><br>
+                    </tr>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if vrf_provide_table %}
+    <div class="row">
+        <div class="col col-md-12">
+            <div class="card">
+                <h5 class="card-header">Associated Contracts Provide</h5>
+                <div class="card-body table-responsive">
+                    {% for provide in vrf_provide_table %}
+                    <tr>
+                        <td>{{ provide|linkify }}</td><br>
+                    </tr>
+                    {% endfor %}
+                </div>  
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock content %}
