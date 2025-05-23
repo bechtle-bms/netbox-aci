@@ -29,11 +29,12 @@ Below listed plugin Versions has been tested with its corresponding NetBox Versi
 |-------------|-----------|
 | 4.1.3       | >= 0.0.1  |
 | 4.2.0       | >= 0.0.1  |
+| 4.3.1       | >= 0.0.2  |
 
 ## Installation
 
 ### Option 1
-Install using [Docker](https://github.com/netbox-community/netbox-docker/wiki/Using-Netbox-Plugins) 
+Install using [Docker](https://github.com/netbox-community/netbox-docker/wiki/Using-Netbox-Plugins)<br>
 Enable the plugin in `<netbox docker>/configuration/plugins.py`.
 
 ### Option 2
