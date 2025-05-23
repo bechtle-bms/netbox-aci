@@ -3,10 +3,18 @@ from netbox.plugins import PluginTemplateExtension
 
 
 class IpamVrfVzanyViewExtension(PluginTemplateExtension):
-    model = "ipam.vrf"
+    models = ['ipam.vrf']
 
     def buttons(self):
         return self.render("netbox_aci/button_vzany.html")
+
+
+class DcimInterfaceIpgViewExtension(PluginTemplateExtension):
+    models = ['dcim.interface']
+
+    def buttons(self):
+        return self.render("netbox_aci/button_ipg.html")
+
 
 #    def full_width_page(self):
 #        obj = self.context['object']
@@ -18,13 +26,5 @@ class IpamVrfVzanyViewExtension(PluginTemplateExtension):
 #                           {"vrf_consume_table": consume_contracts,
 #                            "vrf_provide_table": provide_contracts,
 #                            })
-
-
-class DcimInterfaceIpgViewExtension(PluginTemplateExtension):
-    model = "dcim.interface"
-
-    def buttons(self):
-        return self.render("netbox_aci/button_ipg.html")
-
 
 template_extensions = [IpamVrfVzanyViewExtension, DcimInterfaceIpgViewExtension]
