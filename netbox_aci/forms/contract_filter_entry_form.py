@@ -51,33 +51,31 @@ class ContractFilterEntryForm(NetBoxModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        if get_field_value(self, 'ether_type'):
+        ether_type = get_field_value(self, 'ether_type')
 
-            if get_field_value(self, 'ether_type') in 'ip, ipv4, ipv6':
-                del self.fields['arp_flag']
+        if ether_type:
+
+            # Remove ARP flag for ip protocols.
+            if ether_type in ['ip', 'ipv4', 'ipv6']:
+                self.fields.pop('arp_flag', None)
                 self.fields['ether_type'] = forms.ChoiceField(
-                    choices=[(get_field_value(self, 'ether_type'), get_field_value(self, 'ether_type'))],
+                    choices=[(ether_type, ether_type)],
                     required=False
                 )
 
-            if get_field_value(self, 'ether_type') in 'mpls_unicast, unspecified, trill, fcoe, mac_security':
-                del self.fields['arp_flag']
-                del self.fields['ip_protocol']
-                del self.fields['sport_from']
-                del self.fields['sport_to']
-                del self.fields['dport_from']
-                del self.fields['dport_to']
+            # Remove many input fields for protocols like trill, etc.
+            elif ether_type in ['mpls_unicast', 'unspecified', 'trill', 'fcoe', 'mac_security']:
+                for field in ['arp_flag', 'ip_protocol', 'sport_from', 'sport_to', 'dport_from', 'dport_to']:
+                    self.fields.pop(field, None)
                 self.fields['ether_type'] = forms.ChoiceField(
-                    choices=[(get_field_value(self, 'ether_type'), get_field_value(self, 'ether_type'))],
+                    choices=[(ether_type, ether_type)],
                     required=False
                 )
 
-            if get_field_value(self, 'ether_type') in 'arp':
-                del self.fields['ip_protocol']
-                del self.fields['sport_from']
-                del self.fields['sport_to']
-                del self.fields['dport_from']
-                del self.fields['dport_to']
+            # Remove IP-related fields from ARP.
+            elif ether_type == 'arp':
+                for field in ['ip_protocol', 'sport_from', 'sport_to', 'dport_from', 'dport_to']:
+                    self.fields.pop(field, None)
                 self.fields['ether_type'] = forms.ChoiceField(
                     choices=[("arp", "arp")],
                     required=False
@@ -92,10 +90,10 @@ class ContractFilterEntryForm(NetBoxModelForm):
         dport_from = self.cleaned_data.get("dport_from")
         dport_to = self.cleaned_data.get("dport_to")
 
-        if ip_protocol in 'egp, eigrp, icmp, icmpv6, igmp, igp, l2tp, ospf, pim, unspecified':
+        no_port_protocols = {
+            'egp', 'eigrp', 'icmp', 'icmpv6', 'igmp', 'igp', 'l2tp', 'ospf', 'pim', 'unspecified'
+        }
 
+        if ip_protocol and ip_protocol in no_port_protocols:
             if sport_from or sport_to or dport_from or dport_to:
-                self.add_error("sport_from", "Ports needed for TCP/UDP")
-                self.add_error("sport_to", "Ports needed for TCP/UDP")
-                self.add_error("dport_from", "Ports needed for TCP/UDP")
-                self.add_error("dport_to", "Ports needed for TCP/UDP")
+                self.add_error(None, f"Protocol '{ip_protocol}' does not support port numbers.")
