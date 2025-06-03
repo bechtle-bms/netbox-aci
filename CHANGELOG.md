@@ -1,7 +1,7 @@
 ## 0.0.3 - (2025-06-03)
 ### Fixed
-* added missing aaep filter to AAEPStaticBindingListFilterSet
-* fixed issues with handling static AAEP bindings
+* added missing aaep filter to AAEPStaticBindingListFilterSet - ([85cc540](https://github.com/marc-development/netbox-aci/commit/85cc540))
+* fixed issues with handling static AAEP bindings - ([ed4e356](https://github.com/marc-development/netbox-aci/commit/ed4e356))
 
 ## 0.0.3 - (2025-05-28)
 ### Features
