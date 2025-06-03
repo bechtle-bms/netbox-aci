@@ -8,6 +8,7 @@ from utilities.forms.fields import CommentField, SlugField
 from utilities.forms.rendering import FieldSet
 from .. models import aaep_model, domain_model
 
+
 class AAEPForm(NetBoxModelForm):
 
     slug = SlugField()
@@ -67,25 +68,51 @@ class AAEPStaticBindingForm(NetBoxModelForm):
         """
         super().clean()
 
+        aaep = self.cleaned_data.get("aaep")
         tenant = self.cleaned_data.get("tenant")
         applicationprofile = self.cleaned_data.get("applicationprofile")
         epg = self.cleaned_data.get("epg")
-        encap = self.cleaned_data.get("encap")
+        #encap = self.cleaned_data.get("encap")
         mode = self.cleaned_data.get("mode")
 
-        if tenant and applicationprofile and epg:
-            if aaep_model.AAEPStaticBinding.objects.filter(mode='access_untagged').exists():
-                self.add_error("mode", "Duplicate entry")
-            if aaep_model.AAEPStaticBinding.objects.filter(mode='access_8021p').exists():
-                if mode not in 'trunk':
-                    self.add_error("mode", "Duplicate entry")
-                if aaep_model.AAEPStaticBinding.objects.filter(encap=encap).exists():
-                    self.add_error("encap", "Duplicate entry")
-            if aaep_model.AAEPStaticBinding.objects.filter(mode='trunk').exists():
-                if mode in 'access_untagged':
-                    self.add_error("mode", "Duplicate entry")
-            if aaep_model.AAEPStaticBinding.objects.filter(encap=encap).exists():
-                self.add_error("encap", "Duplicate entry")
+        same_aaep = aaep_model.AAEPStaticBinding.objects.filter(aaep=aaep)
+
+        # General duplicate protection
+        if same_aaep.filter(
+            tenant=tenant,
+            applicationprofile=applicationprofile,
+            epg=epg,
+        ).exists():
+            raise forms.ValidationError("EPG is already in use")
+
+        # Specific protection for nasty access_untagged combinations
+        if mode == "access_untagged":
+            if same_aaep.filter(
+                mode="access_8021p"
+            ).exists():
+                raise forms.ValidationError(
+                    {"mode": "'access_8021p' is already in use."}
+                )
+            if same_aaep.filter(
+                mode="trunk"
+            ).exists():
+                raise forms.ValidationError(
+                    {"mode": "'trunk' is already in use."}
+                )
+        if mode == "access_8021p":
+            if same_aaep.filter(
+                mode="access_untagged"
+            ).exists():
+                raise forms.ValidationError(
+                    {"mode": "'access_untagged' is already in use."}
+                )
+        if mode == "trunk":
+            if same_aaep.filter(
+                mode="access_untagged"
+            ).exists():
+                raise forms.ValidationError(
+                    {"mode": "'access_untagged' is already in use."}
+                )
 
 
 class AAEPFilterForm(NetBoxModelFilterSetForm):
