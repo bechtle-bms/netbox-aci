@@ -1,3 +1,7 @@
+## 0.0.3 - (2025-06-03)
+### Fixed
+* added missing aaep filter to AAEPStaticBindingListFilterSet
+
 ## 0.0.3 - (2025-05-28)
 ### Features
 * Filtersets configured and added to corresponding API views.

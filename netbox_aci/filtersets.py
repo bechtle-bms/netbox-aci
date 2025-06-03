@@ -262,6 +262,7 @@ class AAEPStaticBindingListFilterSet(NetBoxModelFilterSet):
     class Meta:
         model = models.aaep_model.AAEPStaticBinding
         fields = ['id',
+                  'aaep',
                   'tenant',
                   'applicationprofile',
                   'epg',
@@ -272,6 +273,7 @@ class AAEPStaticBindingListFilterSet(NetBoxModelFilterSet):
         if not value.strip():
             return queryset
         return queryset.filter(
+            Q(aaep__name__icontains=value) |
             Q(tenant__name__icontains=value) |
             Q(applicationprofile__name__icontains=value) |
             Q(epg__name__icontains=value) |
