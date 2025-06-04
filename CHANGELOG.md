@@ -1,3 +1,7 @@
+## 0.0.3 - (2025-06-04)
+### Fixed
+* html table-responsive and return_url changes - ([bd1074f](https://github.com/marc-development/netbox-aci/commit/bd1074f))
+
 ## 0.0.3 - (2025-06-03)
 ### Fixed
 * added missing aaep filter to AAEPStaticBindingListFilterSet - ([85cc540](https://github.com/marc-development/netbox-aci/commit/85cc540))
