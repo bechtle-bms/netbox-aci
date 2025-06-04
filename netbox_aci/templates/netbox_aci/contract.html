@@ -2,7 +2,7 @@
 
 {% block extra_controls %}
 <div class="pull-right noprint">
-    <a href="{% url 'plugins:netbox_aci:contractsubject_add' %}?contract={{ object.pk }}" class="btn btn-success">
+    <a href="{% url 'plugins:netbox_aci:contractsubject_add' %}?contract={{ object.pk }}&return_url={{ request.get_full_path }}" class="btn btn-success">
         <span class="mdi mdi-plus-thick" aria-hidden="true"></span> Subject
     </a>
 </div>

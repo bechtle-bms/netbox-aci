@@ -8,47 +8,47 @@
   </button>
   <ul class="dropdown-menu">
       <li>
-        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=ip" class="dropdown-item">
+        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=ip&return_url={{ request.get_full_path }}" class="dropdown-item">
           <span class="mdi" aria-hidden="true"></span> IP
         </a>
       </li>
       <li>
-        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=ipv6" class="dropdown-item">
+        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=ipv6&return_url={{ request.get_full_path }}" class="dropdown-item">
           <span class="mdi" aria-hidden="true"></span> IPv6
         </a>
       </li>
       <li>
-        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=ipv4" class="dropdown-item">
+        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=ipv4&return_url={{ request.get_full_path }}" class="dropdown-item">
           <span class="mdi" aria-hidden="true"></span> IPv4
         </a>
       </li>
       <li>
-        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=mpls_unicast" class="dropdown-item">
+        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=mpls_unicast&return_url={{ request.get_full_path }}" class="dropdown-item">
           <span class="mdi" aria-hidden="true"></span> MPLS Unicast
         </a>
       </li>
       <li>
-        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=unspecified" class="dropdown-item">
+        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=unspecified&return_url={{ request.get_full_path }}" class="dropdown-item">
           <span class="mdi" aria-hidden="true"></span> Unspecified
         </a>
       </li>
       <li>
-        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=trill" class="dropdown-item">
+        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=trill&return_url={{ request.get_full_path }}" class="dropdown-item">
           <span class="mdi" aria-hidden="true"></span> Trill
         </a>
       </li>
       <li>
-        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=arp" class="dropdown-item">
+        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=arp&return_url={{ request.get_full_path }}" class="dropdown-item">
           <span class="mdi" aria-hidden="true"></span> ARP
         </a>
       </li>
       <li>
-        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=fcoe" class="dropdown-item">
+        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=fcoe&return_url={{ request.get_full_path }}" class="dropdown-item">
           <span class="mdi" aria-hidden="true"></span> FCOE
         </a>
       </li>
       <li>
-        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=mac_security" class="dropdown-item">
+        <a href="{% url 'plugins:netbox_aci:contractfilterentry_add' %}?contractfilter={{ object.pk }}&ether_type=mac_security&return_url={{ request.get_full_path }}" class="dropdown-item">
           <span class="mdi" aria-hidden="true"></span> MAC Security
         </a>
       </li>
