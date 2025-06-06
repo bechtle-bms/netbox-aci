@@ -5,7 +5,7 @@ Define the logic of the plugin.
 from netbox.views import generic
 from utilities.views import GetRelatedModelsMixin
 
-from .. import tables
+from .. tables import epg_tables
 from .. models import epg_model
 from .. forms import epg_form
 from .. import filtersets
@@ -35,7 +35,7 @@ class EndPointGroupView(GetRelatedModelsMixin, generic.ObjectView):
 
 class EndPointGroupListView(generic.ObjectListView):
     queryset = epg_model.EndPointGroup.objects.all()
-    table = tables.EndPointGroupTable
+    table = epg_tables.EndPointGroupTable
     filterset = filtersets.EndPointGroupListFilterSet
     filterset_form = epg_form.EndPointGroupFilterForm
 
@@ -52,4 +52,4 @@ class EndPointGroupDeleteView(generic.ObjectDeleteView):
 
 class EndPointGroupBulkDeleteView(generic.BulkDeleteView):
     queryset = epg_model.EndPointGroup.objects.all()
-    table = tables.EndPointGroupTable
+    table = epg_tables.EndPointGroupTable

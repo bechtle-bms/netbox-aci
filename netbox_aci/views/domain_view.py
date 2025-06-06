@@ -8,7 +8,7 @@ from ipam.models import vlans
 from netbox.views import generic
 from utilities.views import GetRelatedModelsMixin, ViewTab, register_model_view
 
-from .. import tables
+from .. tables import domain_tables
 from .. models import domain_model
 from .. forms import domain_form
 
@@ -35,7 +35,7 @@ class DomainView(GetRelatedModelsMixin, generic.ObjectView):
 
 class DomainListView(generic.ObjectListView):
     queryset = domain_model.Domain.objects.all()
-    table = tables.DomainTable
+    table = domain_tables.DomainTable
 
 
 class DomainEditView(generic.ObjectEditView):
@@ -50,7 +50,7 @@ class DomainDeleteView(generic.ObjectDeleteView):
 
 class DomainBulkDeleteView(generic.BulkDeleteView):
     queryset = domain_model.Domain.objects.all()
-    table = tables.DomainTable
+    table = domain_tables.DomainTable
 
 
 @register_model_view(vlans.VLANGroup, "domains")

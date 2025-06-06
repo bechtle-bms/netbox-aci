@@ -1,6 +1,10 @@
 from django.db import models
 from netbox.models import NetBoxModel
 
+__all__ = (
+    "ACIDefault",
+)
+
 
 class ACIDefault(NetBoxModel):
     """

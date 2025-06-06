@@ -6,8 +6,9 @@ from netbox.models import NetBoxModel
 from django.core.validators import RegexValidator
 from django.urls import reverse
 from django.db import models
+from ..choices import PolicyGroupModeChoices
 from . default_model import ACIDefault
-from . import aaep_model, policy_link_level_model
+from . import aaep_model, policies_model
 
 __all__ = (
     "PolicyGroup",
@@ -32,6 +33,11 @@ class PolicyGroup(ACIDefault):
         validators=[input_validation],
     )
 
+    type = models.CharField(
+        choices=PolicyGroupModeChoices,
+        null=True,
+    )
+
     aaep = models.ForeignKey(
         aaep_model.AAEP,
         on_delete=models.PROTECT,
@@ -39,11 +45,35 @@ class PolicyGroup(ACIDefault):
     )
 
     linklevel = models.ForeignKey(
-        policy_link_level_model.LinkLevel,
+        policies_model.LinkLevel,
         blank=True,
         null=True,
         on_delete=models.PROTECT,
         related_name="ipg_linklevel",
+    )
+
+    cdp = models.ForeignKey(
+        policies_model.CDP,
+        blank=True,
+        null=True,
+        on_delete=models.PROTECT,
+        related_name="ipg_cdp",
+    )
+
+    lldp = models.ForeignKey(
+        policies_model.LLDP,
+        blank=True,
+        null=True,
+        on_delete=models.PROTECT,
+        related_name="ipg_lldp",
+    )
+
+    portchannel = models.ForeignKey(
+        policies_model.PortChannel,
+        blank=True,
+        null=True,
+        on_delete=models.PROTECT,
+        related_name="ipg_portchannel",
     )
 
     #Metadata

@@ -5,7 +5,7 @@ Define the logic of the plugin.
 from netbox.views import generic
 from utilities.views import GetRelatedModelsMixin
 
-from .. import tables
+from .. tables import aaep_tables
 from .. models import aaep_model
 from .. forms import aaep_form
 from .. import filtersets
@@ -30,7 +30,7 @@ class AAEPView(GetRelatedModelsMixin, generic.ObjectView):
     def get_extra_context(self, request, instance):
 
         aaepstatic = instance.aaepstaticbinding_aaep.all()
-        static_table = tables.AAEPStaticBindingTable(aaepstatic)
+        static_table = aaep_tables.AAEPStaticBindingTable(aaepstatic)
         return {
             'domain_table': instance.domains.all(),
             'static_table': static_table,
@@ -40,7 +40,7 @@ class AAEPView(GetRelatedModelsMixin, generic.ObjectView):
 
 class AAEPListView(generic.ObjectListView):
     queryset = aaep_model.AAEP.objects.all()
-    table = tables.AAEPTable
+    table = aaep_tables.AAEPTable
     filterset = filtersets.AAEPListFilterSet
     filterset_form = aaep_form.AAEPFilterForm
 
@@ -56,7 +56,7 @@ class AAEPDeleteView(generic.ObjectDeleteView):
 
 class AAEPBulkDeleteView(generic.BulkDeleteView):
     queryset = aaep_model.AAEP.objects.all()
-    table = tables.AAEPTable
+    table = aaep_tables.AAEPTable
 
 
 # Static Binding
@@ -67,7 +67,7 @@ class AAEPStaticBindingView(GetRelatedModelsMixin, generic.ObjectView):
 
 class AAEPStaticBindingListView(generic.ObjectListView):
     queryset = aaep_model.AAEPStaticBinding.objects.all()
-    table = tables.AAEPStaticBindingTable
+    table = aaep_tables.AAEPStaticBindingTable
     actions = {'add': {'add'}}
 
 
@@ -83,4 +83,4 @@ class AAEPStaticBindingDeleteView(generic.ObjectDeleteView):
 
 class AAEPStaticBindingBulkDeleteView(generic.BulkDeleteView):
     queryset = aaep_model.AAEPStaticBinding.objects.all()
-    table = tables.AAEPStaticBindingTable
+    table = aaep_tables.AAEPStaticBindingTable

@@ -25,7 +25,7 @@
       "is_cloneable": false,
       "comments": "",
       "object_types": [
-          77
+          "REMOVE WITH INTEGER VALUE OF 'ipam.ipaddress HERE"
       ]
   }
 },
@@ -111,6 +111,107 @@
         "comments": "",
         "negotiation": "on",
         "speed": "100mbps"
+    }
+},
+{
+    "model": "netbox_aci.cdp",
+    "pk": 8,
+    "fields": {
+        "name": "system-cdp-disabled",
+        "slug": "systemcdpdisabled",
+        "description": "",
+        "comments": "",
+        "admin_state": "disabled"
+    }
+},
+{
+    "model": "netbox_aci.cdp",
+    "pk": 9,
+    "fields": {
+        "name": "system-cdp-enabled",
+        "slug": "systemcdpenabled",
+        "description": "",
+        "comments": "",
+        "admin_state": "enabled"
+    }
+},
+{
+    "model": "netbox_aci.lldp",
+    "pk": 10,
+    "fields": {
+        "name": "system-lldp-disabled",
+        "slug": "systemlldpdisabled",
+        "description": "",
+        "comments": "",
+        "receive_state": "disabled",
+        "transmit_state": "disabled"
+    }
+},
+{
+    "model": "netbox_aci.lldp",
+    "pk": 11,
+    "fields": {
+        "name": "system-lldp-enabled",
+        "slug": "systemlldpenabled",
+        "description": "",
+        "comments": "",
+        "receive_state": "enabled",
+        "transmit_state": "enabled"
+    }
+},
+{
+    "model": "netbox_aci.portchannel",
+    "pk": 12,
+    "fields": {
+        "name": "system-lacp-active",
+        "slug": "systemlacpactive",
+        "description": "",
+        "comments": "",
+        "mode": "lacpactive"
+    }
+},
+{
+    "model": "netbox_aci.portchannel",
+    "pk": 13,
+    "fields": {
+        "name": "system-lacp-passive",
+        "slug": "systemlacppassive",
+        "description": "",
+        "comments": "",
+        "mode": "lacppassive"
+    }
+},
+{
+    "model": "netbox_aci.portchannel",
+    "pk": 14,
+    "fields": {
+        "name": "system-mac-pinning",
+        "slug": "systemmacpinning",
+        "description": "",
+        "comments": "",
+        "mode": "macpinning"
+    }
+},
+{
+    "model": "netbox_aci.portchannel",
+    "pk": 15,
+    "fields": {
+        "name": "system-mac-pinning-nic-load",
+        "slug": "systemmacpinningnicload",
+        "description": "",
+        "comments": "",
+        "mode": "macpinningnicload"
+    }
+},
+{
+    "model": "netbox_aci.portchannel",
+    "pk": 16,
+    "fields": {
+        "name": "system-static-on",
+        "slug": "systemstaticon",
+        "description": "",
+        "comments": "",
+        "mode": "staticchannel"
     }
 }
 ]

@@ -8,7 +8,8 @@ from django.views.generic import View
 from ipam.models import vrfs
 from netbox.views import generic
 from utilities.views import GetRelatedModelsMixin, ViewTab, register_model_view
-from .. import tables
+
+from .. tables import contract_tables
 from .. models import contract_model
 from .. forms import contract_form
 
@@ -28,7 +29,7 @@ class ContractView(GetRelatedModelsMixin, generic.ObjectView):
     def get_extra_context(self, request, instance):
 
         contractsubject = instance.subject_contract.all()
-        subject_table = tables.ContractSubjectTable(contractsubject)
+        subject_table = contract_tables.ContractSubjectTable(contractsubject)
         return {
             'subject_table': subject_table,
             'vrf_consume_table': instance.vrfs_consume.all(),
@@ -39,7 +40,7 @@ class ContractView(GetRelatedModelsMixin, generic.ObjectView):
 
 class ContractListView(generic.ObjectListView):
     queryset = contract_model.Contract.objects.all()
-    table = tables.ContractTable
+    table = contract_tables.ContractTable
 
 
 class ContractEditView(generic.ObjectEditView):
@@ -54,7 +55,7 @@ class ContractDeleteView(generic.ObjectDeleteView):
 
 class ContractBulkDeleteView(generic.BulkDeleteView):
     queryset = contract_model.Contract.objects.all()
-    table = tables.ContractTable
+    table = contract_tables.ContractTable
 
 
 @register_model_view(vrfs.VRF, "vzany")

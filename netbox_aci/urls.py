@@ -1,8 +1,9 @@
-from netbox.views.generic import ObjectChangeLogView
-from . import views
-from . import models
 from django.urls import include, path
 from utilities.urls import get_model_urls
+from netbox.views.generic import ObjectChangeLogView
+
+from . import views
+from . import models
 
 urlpatterns = (
     # Application Profile
@@ -371,24 +372,93 @@ urlpatterns = (
 
     # Policy Link Level
     path('linklevel/',
-         views.policy_link_level_view.LinkLevelListView.as_view(),
+         views.policies_view.LinkLevelListView.as_view(),
          name='linklevel_list'),
     path('linklevel/add/',
-         views.policy_link_level_view.LinkLevelEditView.as_view(),
+         views.policies_view.LinkLevelEditView.as_view(),
          name='linklevel_add'),
     path('linklevel/<int:pk>/',
-         views.policy_link_level_view.LinkLevelView.as_view(),
+         views.policies_view.LinkLevelView.as_view(),
          name='linklevel'),
     path('linklevel/<int:pk>/edit/',
-         views.policy_link_level_view.LinkLevelEditView.as_view(),
+         views.policies_view.LinkLevelEditView.as_view(),
          name='linklevel_edit'),
     path('linklevel/<int:pk>/delete/',
-         views.policy_link_level_view.LinkLevelDeleteView.as_view(),
+         views.policies_view.LinkLevelDeleteView.as_view(),
          name='linklevel_delete'),
     path('linklevel/<int:pk>/changelog/',
          ObjectChangeLogView.as_view(),
          name='linklevel_changelog',
-         kwargs={'model': models.policy_link_level_model.LinkLevel}),
+         kwargs={'model': models.policies_model.LinkLevel}),
     path('linklevel/<int:pk>/',
          include(get_model_urls('netbox_aci', 'linklevel'))),
+
+    # Policy CDP
+    path('cdp/',
+         views.policies_view.CDPListView.as_view(),
+         name='cdp_list'),
+    path('cdp/add/',
+         views.policies_view.CDPEditView.as_view(),
+         name='cdp_add'),
+    path('cdp/<int:pk>/',
+         views.policies_view.CDPView.as_view(),
+         name='cdp'),
+    path('cdp/<int:pk>/edit/',
+         views.policies_view.CDPEditView.as_view(),
+         name='cdp_edit'),
+    path('cdp/<int:pk>/delete/',
+         views.policies_view.CDPDeleteView.as_view(),
+         name='cdp_delete'),
+    path('cdp/<int:pk>/changelog/',
+         ObjectChangeLogView.as_view(),
+         name='cdp_changelog',
+         kwargs={'model': models.policies_model.CDP}),
+    path('cdp/<int:pk>/',
+         include(get_model_urls('netbox_aci', 'cdp'))),
+
+    # Policy LLDP
+    path('lldp/',
+         views.policies_view.LLDPListView.as_view(),
+         name='lldp_list'),
+    path('lldp/add/',
+         views.policies_view.LLDPEditView.as_view(),
+         name='lldp_add'),
+    path('lldp/<int:pk>/',
+         views.policies_view.LLDPView.as_view(),
+         name='lldp'),
+    path('lldp/<int:pk>/edit/',
+         views.policies_view.LLDPEditView.as_view(),
+         name='lldp_edit'),
+    path('lldp/<int:pk>/delete/',
+         views.policies_view.LLDPDeleteView.as_view(),
+         name='lldp_delete'),
+    path('lldp/<int:pk>/changelog/',
+         ObjectChangeLogView.as_view(),
+         name='lldp_changelog',
+         kwargs={'model': models.policies_model.LLDP}),
+    path('lldp/<int:pk>/',
+         include(get_model_urls('netbox_aci', 'lldp'))),
+
+    # Policy PortChannel
+    path('portchannel/',
+         views.policies_view.PortChannelListView.as_view(),
+         name='portchannel_list'),
+    path('portchannel/add/',
+         views.policies_view.PortChannelEditView.as_view(),
+         name='portchannel_add'),
+    path('portchannel/<int:pk>/',
+         views.policies_view.PortChannelView.as_view(),
+         name='portchannel'),
+    path('portchannel/<int:pk>/edit/',
+         views.policies_view.PortChannelEditView.as_view(),
+         name='portchannel_edit'),
+    path('portchannel/<int:pk>/delete/',
+         views.policies_view.PortChannelDeleteView.as_view(),
+         name='portchannel_delete'),
+    path('portchannel/<int:pk>/changelog/',
+         ObjectChangeLogView.as_view(),
+         name='portchannel_changelog',
+         kwargs={'model': models.policies_model.PortChannel}),
+    path('portchannel/<int:pk>/',
+         include(get_model_urls('netbox_aci', 'portchannel'))),
 )

@@ -145,7 +145,7 @@ fabric_menu_items = (
 policy_menu_items = (
     PluginMenuItem(
         link='plugins:netbox_aci:linklevel_list',
-        link_text='Link Levels',
+        link_text='Link Level',
         permissions=['netbox_aci.view_linklevel'],
         buttons=(
             PluginMenuButton(
@@ -153,6 +153,45 @@ policy_menu_items = (
                 title='Add',
                 icon_class='mdi mdi-plus-thick',
                 permissions=['netbox_aci.add_linklevel'],
+            ),
+        ),
+    ),
+    PluginMenuItem(
+        link='plugins:netbox_aci:cdp_list',
+        link_text='CDP',
+        permissions=['netbox_aci.view_cdp'],
+        buttons=(
+            PluginMenuButton(
+                link='plugins:netbox_aci:cdp_add',
+                title='Add',
+                icon_class='mdi mdi-plus-thick',
+                permissions=['netbox_aci.add_cdp'],
+            ),
+        ),
+    ),
+    PluginMenuItem(
+        link='plugins:netbox_aci:lldp_list',
+        link_text='LLDP',
+        permissions=['netbox_aci.view_lldp'],
+        buttons=(
+            PluginMenuButton(
+                link='plugins:netbox_aci:lldp_add',
+                title='Add',
+                icon_class='mdi mdi-plus-thick',
+                permissions=['netbox_aci.add_lldp'],
+            ),
+        ),
+    ),
+    PluginMenuItem(
+        link='plugins:netbox_aci:portchannel_list',
+        link_text='PortChannel',
+        permissions=['netbox_aci.view_portchannel'],
+        buttons=(
+            PluginMenuButton(
+                link='plugins:netbox_aci:portchannel_add',
+                title='Add',
+                icon_class='mdi mdi-plus-thick',
+                permissions=['netbox_aci.add_portchannel'],
             ),
         ),
     ),

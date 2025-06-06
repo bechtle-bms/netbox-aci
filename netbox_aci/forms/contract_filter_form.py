@@ -7,6 +7,10 @@ from utilities.forms.fields import SlugField
 from utilities.forms.rendering import FieldSet
 from .. models import contract_filter_model
 
+__all__ = (
+    "ContractFilterForm",
+)
+
 
 class ContractFilterForm(NetBoxModelForm):
 

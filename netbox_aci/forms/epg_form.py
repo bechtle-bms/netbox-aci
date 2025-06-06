@@ -10,6 +10,11 @@ from utilities.forms.fields import CommentField, SlugField, DynamicModelChoiceFi
 from utilities.forms.rendering import FieldSet
 from .. models import ap_model, epg_model, domain_model, contract_model
 
+__all__ = (
+    "EndPointGroupForm",
+    "EndPointGroupFilterForm",
+)
+
 
 class EndPointGroupForm(NetBoxModelForm):
 

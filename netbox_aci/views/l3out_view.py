@@ -5,7 +5,7 @@ Define the logic of the plugin.
 from netbox.views import generic
 from utilities.views import GetRelatedModelsMixin
 
-from .. import tables
+from .. tables import l3out_tables
 from .. models import l3out_model
 from .. forms import l3out_form
 
@@ -32,7 +32,7 @@ class L3OutView(GetRelatedModelsMixin, generic.ObjectView):
 
 class L3OutListView(generic.ObjectListView):
     queryset = l3out_model.L3Out.objects.all()
-    table = tables.L3OutTable
+    table = l3out_tables.L3OutTable
 
 
 class L3OutEditView(generic.ObjectEditView):
@@ -47,4 +47,4 @@ class L3OutDeleteView(generic.ObjectDeleteView):
 
 class L3OutBulkDeleteView(generic.BulkDeleteView):
     queryset = l3out_model.L3Out.objects.all()
-    table = tables.L3OutTable
+    table = l3out_tables.L3OutTable

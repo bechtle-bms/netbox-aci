@@ -64,6 +64,15 @@ PLUGINS = [
 * Fixtures:
 
         You can load the requirements manually:
-        python manage.py loaddata defaults.json
+        python3 manage.py loaddata defaults.json
 
-        !!! NOTE AND ADJUST THE VALUES FOR pk AND related_object_type BEFOREHAND !!!
+        !!! NOTE AND ADJUST THE VALUES FOR pk AND object_types BEFOREHAND !!!
+        ipam.ipaddress value must be an integer.
+
+        Example to get the integer value for ipam.ipaddress:
+            python3 manage.py shell
+            from django.contrib.contenttypes.models import ContentType
+            from ipam.models.ip import IPAddress
+            model_id = ContentType.objects.get_for_model(IPAddress)
+            print(model_id.id)
+            exit()

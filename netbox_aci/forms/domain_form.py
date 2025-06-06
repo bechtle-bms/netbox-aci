@@ -8,6 +8,10 @@ from utilities.forms.fields import CommentField, SlugField
 from utilities.forms.rendering import FieldSet
 from .. models import domain_model
 
+__all__ = (
+    "DomainForm",
+)
+
 
 class DomainForm(NetBoxModelForm):
 
