@@ -7,6 +7,11 @@ from utilities.forms.fields import CommentField, SlugField
 from utilities.forms.rendering import FieldSet, TabbedGroups
 from .. models import contract_model
 
+__all__ = (
+    "ContractForm",
+)
+
+
 class ContractForm(NetBoxModelForm):
 
     slug = SlugField()

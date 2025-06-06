@@ -7,6 +7,10 @@ from utilities.forms.fields import CommentField, SlugField
 from utilities.forms.rendering import FieldSet
 from .. models import ap_model
 
+__all__ = (
+    "ApplicationProfileForm",
+)
+
 
 class ApplicationProfileForm(NetBoxModelForm):
 

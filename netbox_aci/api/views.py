@@ -19,6 +19,9 @@ from . serializers import (
     PolicyGroupSerializer,
     PolicyGroupAssignementSerializer,
     LinkLevelSerializer,
+    CDPSerializer,
+    LLDPSerializer,
+    PortChannelSerializer
     )
 
 
@@ -152,5 +155,29 @@ class LinkLevelViewSet(NetBoxModelViewSet):
     """
     Defines the view set for the django Interface Link Level Policy & associates it to a view.
     """
-    queryset = models.policy_link_level_model.LinkLevel.objects.all()
+    queryset = models.policies_model.LinkLevel.objects.all()
     serializer_class = LinkLevelSerializer
+
+
+class CDPViewSet(NetBoxModelViewSet):
+    """
+    Defines the view set for the django Interface CDP Policy & associates it to a view.
+    """
+    queryset = models.policies_model.CDP.objects.all()
+    serializer_class = CDPSerializer
+
+
+class LLDPViewSet(NetBoxModelViewSet):
+    """
+    Defines the view set for the django Interface LLDP Policy & associates it to a view.
+    """
+    queryset = models.policies_model.LLDP.objects.all()
+    serializer_class = LLDPSerializer
+
+
+class PortChannelViewSet(NetBoxModelViewSet):
+    """
+    Defines the view set for the django Interface PortChannel Policy & associates it to a view.
+    """
+    queryset = models.policies_model.PortChannel.objects.all()
+    serializer_class = PortChannelSerializer

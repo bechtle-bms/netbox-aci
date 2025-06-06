@@ -5,7 +5,7 @@ Define the logic of the plugin.
 from netbox.views import generic
 from utilities.views import GetRelatedModelsMixin
 
-from .. import tables
+from .. tables import contract_tables
 from .. models import contract_filter_entry_model
 from .. forms import contract_filter_entry_form
 
@@ -30,7 +30,7 @@ class ContractFilterEntryView(GetRelatedModelsMixin, generic.ObjectView):
 
 class ContractFilterEntryListView(generic.ObjectListView):
     queryset = contract_filter_entry_model.ContractFilterEntry.objects.all()
-    table = tables.ContractFilterEntryTable
+    table = contract_tables.ContractFilterEntryTable
 
 
 class ContractFilterEntryEditView(generic.ObjectEditView):
@@ -44,4 +44,4 @@ class ContractFilterEntryDeleteView(generic.ObjectDeleteView):
 
 class ContractFilterEntryBulkDeleteView(generic.BulkDeleteView):
     queryset = contract_filter_entry_model.ContractFilterEntry.objects.all()
-    table = tables.ContractFilterEntryTable
+    table = contract_tables.ContractFilterEntryTable

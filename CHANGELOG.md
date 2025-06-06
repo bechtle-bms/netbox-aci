@@ -1,3 +1,7 @@
+## 0.0.4 - (2025-06-06)
+### Features
+* Policy Groups Update, more Policies added and tables divided.
+
 ## 0.0.3 - (2025-06-04)
 ### Fixed
 * html table-responsive and return_url changes - ([bd1074f](https://github.com/marc-development/netbox-aci/commit/bd1074f))

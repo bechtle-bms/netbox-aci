@@ -356,7 +356,7 @@ class LinkLevelSerializer(NetBoxModelSerializer):
     )
 
     class Meta:
-        model = models.policy_link_level_model.LinkLevel
+        model = models.policies_model.LinkLevel
         fields = (
             'id',
             'display',
@@ -372,6 +372,73 @@ class LinkLevelSerializer(NetBoxModelSerializer):
         brief_fields = ("id", "display", "name", "slug", "url")
 
 
+class CDPSerializer(NetBoxModelSerializer):
+
+    url = serializers.HyperlinkedIdentityField(
+        view_name='plugins-api:netbox_aci-api:cdp-detail',
+    )
+
+    class Meta:
+        model = models.policies_model.CDP
+        fields = (
+            'id',
+            'display',
+            'name',
+            'slug',
+            'description',
+            'created',
+            'last_updated',
+            'url',
+            'admin_state',
+        )
+        brief_fields = ("id", "display", "name", "slug", "url")
+
+
+class LLDPSerializer(NetBoxModelSerializer):
+
+    url = serializers.HyperlinkedIdentityField(
+        view_name='plugins-api:netbox_aci-api:lldp-detail',
+    )
+
+    class Meta:
+        model = models.policies_model.LLDP
+        fields = (
+            'id',
+            'display',
+            'name',
+            'slug',
+            'description',
+            'created',
+            'last_updated',
+            'url',
+            'receive_state',
+            'transmit_state',
+        )
+        brief_fields = ("id", "display", "name", "slug", "url")
+
+
+class PortChannelSerializer(NetBoxModelSerializer):
+
+    url = serializers.HyperlinkedIdentityField(
+        view_name='plugins-api:netbox_aci-api:portchannel-detail',
+    )
+
+    class Meta:
+        model = models.policies_model.PortChannel
+        fields = (
+            'id',
+            'display',
+            'name',
+            'slug',
+            'description',
+            'created',
+            'last_updated',
+            'url',
+            'mode',
+        )
+        brief_fields = ("id", "display", "name", "slug", "url")
+
+
 class PolicyGroupSerializer(NetBoxModelSerializer):
 
     url = serializers.HyperlinkedIdentityField(
@@ -380,6 +447,9 @@ class PolicyGroupSerializer(NetBoxModelSerializer):
 
     aaep = AAEPSerializer(nested=True)
     linklevel = LinkLevelSerializer(nested=True)
+    cdp = CDPSerializer(nested=True)
+    lldp = LLDPSerializer(nested=True)
+    portchannel = PortChannelSerializer(nested=True)
 
     class Meta:
         model = models.ipg_model.PolicyGroup
@@ -392,8 +462,12 @@ class PolicyGroupSerializer(NetBoxModelSerializer):
             'created',
             'last_updated',
             'url',
+            'type',
             'aaep',
             'linklevel',
+            'cdp',
+            'lldp',
+            'portchannel',
         )
         brief_fields = ("id", "display", "name", "slug", "url")
 

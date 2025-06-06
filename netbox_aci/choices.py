@@ -5,6 +5,7 @@ Choice sets used by the models, views and forms.
 from utilities.choices import ChoiceSet
 
 __all__ = (
+    "GenericDisabledEnabledChoices",
     "BridgeDomainL2UUCChoices",
     "ContractScopeChoices",
     "ContractQoSClassChoices",
@@ -17,14 +18,31 @@ __all__ = (
     "DomainTypeChoices",
     "PoolAllocationModeChoices",
     "AAEPStaticBindingModeChoices",
+    "PolicyGroupModeChoices",
+    "PortChannelChoices",
     "LinkLevelNegotiationChoices",
     "LinkLevelSpeedChoices",
 )
 
 
+class GenericDisabledEnabledChoices(ChoiceSet):
+    """
+    Defines the choices available for generic on/off.
+    """
+
+    DISABLED = "disabled"
+    ENABLED = "enabled"
+
+    CHOICES = [
+        ('', "----"),
+        (DISABLED, "disabled"),
+        (ENABLED, "enabled"),
+    ]
+
+
 class BridgeDomainL2UUCChoices(ChoiceSet):
     """
-    Defines the choices availble for the L2 Unknown Unicast.
+    Defines the choices available for the L2 Unknown Unicast.
     """
 
     FLOOD = "flood"
@@ -39,7 +57,7 @@ class BridgeDomainL2UUCChoices(ChoiceSet):
 
 class ContractScopeChoices(ChoiceSet):
     """
-    Defines the choices availble for the Contract scope.
+    Defines the choices available for the Contract scope.
     """
 
     SCOPE_VRF = "vrf"
@@ -56,7 +74,7 @@ class ContractScopeChoices(ChoiceSet):
 
 class ContractQoSClassChoices(ChoiceSet):
     """
-    Defines the choices availble for the Contract Qos Class.
+    Defines the choices available for the Contract Qos Class.
     """
 
     LEVEL1 = "level1"
@@ -79,7 +97,7 @@ class ContractQoSClassChoices(ChoiceSet):
 
 class ContractTargetDSCPChoices(ChoiceSet):
     """
-    Defines the choices availble for the Contract Target DSCP.
+    Defines the choices available for the Contract Target DSCP.
     """
 
     AF11 = "af11"
@@ -134,7 +152,7 @@ class ContractTargetDSCPChoices(ChoiceSet):
 
 class ContractFilterDirectivesChoices(ChoiceSet):
     """
-    Defines the choices availble for the Contract Filter Directives.
+    Defines the choices available for the Contract Filter Directives.
     """
 
     LOG = "log"
@@ -148,7 +166,7 @@ class ContractFilterDirectivesChoices(ChoiceSet):
 
 class ContractFilterACtionChoices(ChoiceSet):
     """
-    Defines the choices availble for the Contract Filter Action.
+    Defines the choices available for the Contract Filter Action.
     """
 
     PERMIT = "permit"
@@ -163,7 +181,7 @@ class ContractFilterACtionChoices(ChoiceSet):
 
 class ContractFilterEntryEtherTypeChoices(ChoiceSet):
     """
-    Defines the choices availble for the Contract Filter Entry EtherType.
+    Defines the choices available for the Contract Filter Entry EtherType.
     """
 
     IP = "ip"
@@ -192,7 +210,7 @@ class ContractFilterEntryEtherTypeChoices(ChoiceSet):
 
 class ContractFilterEntryIPProtocolChoices(ChoiceSet):
     """
-    Defines the choices availble for the Contract Filter Entry IP Protocol.
+    Defines the choices available for the Contract Filter Entry IP Protocol.
     """
 
     EIGRP = "eigrp"
@@ -227,7 +245,7 @@ class ContractFilterEntryIPProtocolChoices(ChoiceSet):
 
 class ContractFilterEntryARPFlagChoices(ChoiceSet):
     """
-    Defines the choices availble for the Contract Filter Entry ARP Flag.
+    Defines the choices available for the Contract Filter Entry ARP Flag.
     """
 
     ARP_REPLY = "reply"
@@ -244,7 +262,7 @@ class ContractFilterEntryARPFlagChoices(ChoiceSet):
 
 class DomainTypeChoices(ChoiceSet):
     """
-    Defines the choices availble for the Domain Type.
+    Defines the choices available for the Domain Type.
     """
 
     PHYSICAL = "physical"
@@ -261,7 +279,7 @@ class DomainTypeChoices(ChoiceSet):
 
 class PoolAllocationModeChoices(ChoiceSet):
     """
-    Defines the choices availble for the Pool Allocation Mode.
+    Defines the choices available for the Pool Allocation Mode.
     """
 
     STATIC = "static"
@@ -276,7 +294,7 @@ class PoolAllocationModeChoices(ChoiceSet):
 
 class AAEPStaticBindingModeChoices(ChoiceSet):
     """
-    Defines the choices availble for the static binding within an AAEP.
+    Defines the choices available for the static binding within an AAEP.
     """
 
     TRUNK = "trunk"
@@ -291,9 +309,49 @@ class AAEPStaticBindingModeChoices(ChoiceSet):
     ]
 
 
+class PolicyGroupModeChoices(ChoiceSet):
+    """
+    Defines the choices available for the type of the IPG.
+    """
+
+    ACCESS = "access"
+    PC = "pc"
+    VPC = "vpc"
+
+    CHOICES = [
+        ('', "----"),
+        (ACCESS, "access"),
+        (PC, "pc"),
+        (VPC, "vpc"),
+    ]
+
+
+class PortChannelChoices(ChoiceSet):
+    """
+    Defines the choices available for the type of the PortChannel.
+    """
+
+    STATICCHANNEL = "staticchannel"
+    LACPACTIVE = "lacpactive"
+    LACPPASSIVE = "lacppassive"
+    MACPINNING = "macpinning"
+    MACPINNINGNICLOAD = "macpinningnicload"
+    EXPLICITFAILOVER = "explicitfailover"
+
+    CHOICES = [
+        ('', "----"),
+        (STATICCHANNEL, "staticchannel"),
+        (LACPACTIVE, "lacpactive"),
+        (LACPPASSIVE, "lacppassive"),
+        (MACPINNING, "macpinning"),
+        (MACPINNINGNICLOAD, "macpinningnicload"),
+        (EXPLICITFAILOVER, "explicitfailover"),
+    ]
+
+
 class LinkLevelNegotiationChoices(ChoiceSet):
     """
-    Defines the choices availble for an interface link level negotiation.
+    Defines the choices available for an interface link level negotiation.
     """
 
     OFF = "off"
@@ -310,7 +368,7 @@ class LinkLevelNegotiationChoices(ChoiceSet):
 
 class LinkLevelSpeedChoices(ChoiceSet):
     """
-    Defines the choices availble for an interface link level speed.
+    Defines the choices available for an interface link level speed.
     """
 
     INHERIT = "inherit"

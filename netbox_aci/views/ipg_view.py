@@ -8,7 +8,7 @@ from dcim.models import device_components
 from netbox.views import generic
 from utilities.views import GetRelatedModelsMixin, ViewTab, register_model_view
 
-from .. import tables
+from .. tables import ipg_tables
 from .. models import ipg_model
 from .. forms import ipg_form
 from .. import filtersets
@@ -33,7 +33,7 @@ class PolicyGroupView(GetRelatedModelsMixin, generic.ObjectView):
 
     def get_extra_context(self, request, instance):
 
-        ipgassignement_table = tables.IPGAssignementTable(instance.ipgassignement.all())
+        ipgassignement_table = ipg_tables.IPGAssignementTable(instance.ipgassignement.all())
 
         return {
             'ipgassignement_table': ipgassignement_table,
@@ -43,9 +43,10 @@ class PolicyGroupView(GetRelatedModelsMixin, generic.ObjectView):
 
 class PolicyGroupListView(generic.ObjectListView):
     queryset = ipg_model.PolicyGroup.objects.all()
-    table = tables.IPGTable
+    table = ipg_tables.IPGTable
     filterset = filtersets.PolicyGroupListFilterSet
     filterset_form = ipg_form.PolicyGroupFilterForm
+
 
 class PolicyGroupEditView(generic.ObjectEditView):
     queryset = ipg_model.PolicyGroup.objects.all()
@@ -59,7 +60,7 @@ class PolicyGroupDeleteView(generic.ObjectDeleteView):
 
 class PolicyGroupBulkDeleteView(generic.BulkDeleteView):
     queryset = ipg_model.PolicyGroup.objects.all()
-    table = tables.IPGTable
+    table = ipg_tables.IPGTable
 
 
 class PolicyGroupAssignementView(GetRelatedModelsMixin, generic.ObjectView):
@@ -75,7 +76,7 @@ class PolicyGroupAssignementView(GetRelatedModelsMixin, generic.ObjectView):
 
 class PolicyGroupAssignementListView(generic.ObjectListView):
     queryset = ipg_model.PolicyGroupAssignement.objects.all()
-    table = tables.IPGAssignementTable
+    table = ipg_tables.IPGAssignementTable
 
 
 class PolicyGroupAssignementEditView(generic.ObjectEditView):
@@ -90,7 +91,7 @@ class PolicyGroupAssignementDeleteView(generic.ObjectDeleteView):
 
 class PolicyGroupAssignementBulkDeleteView(generic.BulkDeleteView):
     queryset = ipg_model.PolicyGroupAssignement.objects.all()
-    table = tables.IPGAssignementTable
+    table = ipg_tables.IPGAssignementTable
 
 
 @register_model_view(device_components.Interface, "ipg")

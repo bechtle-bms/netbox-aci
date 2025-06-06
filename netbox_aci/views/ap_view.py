@@ -8,7 +8,7 @@ from tenancy.models import tenants
 from netbox.views import generic
 from utilities.views import GetRelatedModelsMixin, ViewTab, register_model_view
 
-from .. import tables
+from .. tables import ap_tables
 from .. models import ap_model
 from .. forms import ap_form
 
@@ -34,7 +34,7 @@ class ApplicationProfileView(GetRelatedModelsMixin, generic.ObjectView):
 
 class ApplicationProfileListView(generic.ObjectListView):
     queryset = ap_model.ApplicationProfile.objects.all()
-    table = tables.ApplicationProfileTable
+    table = ap_tables.ApplicationProfileTable
 
 
 class ApplicationProfileEditView(generic.ObjectEditView):
@@ -49,7 +49,7 @@ class ApplicationProfileDeleteView(generic.ObjectDeleteView):
 
 class ApplicationProfileBulkDeleteView(generic.BulkDeleteView):
     queryset = ap_model.ApplicationProfile.objects.all()
-    table = tables.ApplicationProfileTable
+    table = ap_tables.ApplicationProfileTable
 
 
 @register_model_view(tenants.Tenant, "applicationprofiles")

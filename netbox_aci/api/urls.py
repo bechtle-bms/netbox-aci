@@ -24,5 +24,8 @@ router.register("aaepstaticbinding", views.AAEPStaticBindingViewSet)
 router.register("policygroup", views.PolicyGroupViewSet)
 router.register("policygroupassignement", views.PolicyGroupAssignementViewSet)
 router.register("linklevel", views.LinkLevelViewSet)
+router.register("cdp", views.CDPViewSet)
+router.register("lldp", views.LLDPViewSet)
+router.register("portchannel", views.PortChannelViewSet)
 
 urlpatterns = router.urls

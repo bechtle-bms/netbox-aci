@@ -8,10 +8,30 @@
                 <th scope="row">AAEP</th>
                 <td>{{ object.aaep|linkify }}</td>
             </tr>
+            {% if object.linklevel %}
             <tr>
                 <th scope="row">Link Level Policy</th>
                 <td>{{ object.linklevel|linkify }}</td>
-            </tr>          
+            </tr>
+            {% endif %}
+            {% if object.cdp %}
+            <tr>
+                <th scope="row">CDP</th>
+                <td>{{ object.cdp|linkify }}</td>
+            </tr>
+            {% endif %}
+            {% if object.lldp %}
+            <tr>
+                <th scope="row">LLDP</th>
+                <td>{{ object.lldp|linkify }}</td>
+            </tr>
+            {% endif %}
+            {% if object.portchannel %}
+                <tr>
+                    <th scope="row">PortChannel</th>
+                    <td>{{ object.portchannel|linkify }}</td>
+                </tr>
+            {% endif %}
         </table>
     </div>
 </div>

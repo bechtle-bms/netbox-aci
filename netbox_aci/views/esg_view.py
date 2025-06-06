@@ -5,7 +5,7 @@ Define the logic of the plugin.
 from netbox.views import generic
 from utilities.views import GetRelatedModelsMixin
 
-from .. import tables
+from .. tables import esg_tables
 from .. models import esg_model
 from .. forms import esg_form
 from .. import filtersets
@@ -37,7 +37,7 @@ class EndPointSecurityGroupView(GetRelatedModelsMixin, generic.ObjectView):
 
 class EndPointSecurityGroupListView(generic.ObjectListView):
     queryset = esg_model.EndPointSecurityGroup.objects.all()
-    table = tables.EndPointSecurityGroupTable
+    table = esg_tables.EndPointSecurityGroupTable
     filterset = filtersets.EndPointSecurityGroupListFilterSet
     filterset_form = esg_form.EndPointSecurityGroupFilterForm
 
@@ -53,4 +53,4 @@ class EndPointSecurityGroupDeleteView(generic.ObjectDeleteView):
 
 class EndPointSecurityGroupBulkDeleteView(generic.BulkDeleteView):
     queryset = esg_model.EndPointSecurityGroup.objects.all()
-    table = tables.EndPointSecurityGroupTable
+    table = esg_tables.EndPointSecurityGroupTable

@@ -288,6 +288,7 @@ class PolicyGroupListFilterSet(NetBoxModelFilterSet):
         fields = ['id',
                   'name',
                   'description',
+                  'type',
                   'aaep'
         ]
 
@@ -297,6 +298,7 @@ class PolicyGroupListFilterSet(NetBoxModelFilterSet):
         return queryset.filter(
             Q(name__icontains=value) |
             Q(description__icontains=value) |
+            Q(type__icontains=value) |
             Q(aaep__name__icontains=value)
         )
 

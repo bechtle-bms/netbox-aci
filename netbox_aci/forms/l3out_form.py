@@ -8,6 +8,10 @@ from utilities.forms.fields import CommentField, SlugField
 from utilities.forms.rendering import FieldSet
 from .. models import l3out_model, domain_model
 
+__all__ = (
+    "L3OutForm",
+)
+
 
 class L3OutForm(NetBoxModelForm):
 
