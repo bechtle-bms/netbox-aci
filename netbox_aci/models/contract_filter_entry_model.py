@@ -5,8 +5,8 @@ Define the django model.
 from django.core.validators import RegexValidator
 from django.urls import reverse
 from django.db import models
+from netbox.models import NetBoxModel
 from .. choices import ContractFilterEntryEtherTypeChoices, ContractFilterEntryIPProtocolChoices, ContractFilterEntryARPFlagChoices
-from . default_model import ACIDefault
 from . contract_filter_model import ContractFilter
 
 __all__ = (
@@ -24,14 +24,29 @@ port_validation = RegexValidator(
 )
 
 
-class ContractFilterEntry(ACIDefault):
+class ContractFilterEntry(NetBoxModel):
     """
     This class definition defines a Django model for an entry within a contract filter.
     """
+    slug = models.SlugField(
+        verbose_name=('slug'),
+        max_length=100,
+        null=True,
+        blank=True,
+    )
+
+    description = models.CharField(
+        max_length=100,
+        blank=True,
+    )
+
+    comments = models.TextField(
+        blank=True
+    )
+
     name = models.CharField(
         verbose_name=('name'),
         max_length=50,
-        unique=True,
         validators=[input_validation],
     )
 
@@ -95,6 +110,16 @@ class ContractFilterEntry(ACIDefault):
         ordering = ["name"]
         verbose_name = "Contract Filter Entry"
         verbose_name_plural = "Contract Filter Entries"
+        constraints = [
+            models.UniqueConstraint(
+                fields=['name', 'contractfilter'],
+                name='unique_entry_per_filter'
+            ),
+            models.UniqueConstraint(
+                fields=['slug', 'contractfilter'],
+                name='unique_slug_per_filter'
+            ),
+        ]
 
     #Methods
     def __str__(self):

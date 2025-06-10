@@ -1,3 +1,7 @@
+## 0.0.5 - (2025-06-10)
+### Features
+* Updated contract handling. Updated API parent child object hierarchy.
+
 ## 0.0.4 - (2025-06-06)
 ### Features
 * Policy Groups Update, more Policies added and tables divided.

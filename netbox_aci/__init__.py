@@ -1,4 +1,4 @@
-__version__ = '0.0.4'
+__version__ = '0.0.5'
 __author__ = """Marc-Aurel Mohr-Lenné"""
 
 from netbox.plugins import PluginConfig
