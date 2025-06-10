@@ -7,120 +7,11 @@ from dcim.api.serializers import DeviceSerializer, InterfaceSerializer
 from .. import models
 
 
-class ApplicationProfileSerializer(NetBoxModelSerializer):
-
-    url = serializers.HyperlinkedIdentityField(
-        view_name='plugins-api:netbox_aci-api:applicationprofile-detail',
-    )
-
-    tenant = TenantSerializer(nested=True)
-
-    class Meta:
-        model = models.ap_model.ApplicationProfile
-        fields = (
-            'id',
-            'display',
-            'name',
-            'slug',
-            'description',
-            'created',
-            'last_updated',
-            'url',
-            'tenant',
-        )
-        brief_fields = ("id", "display", "name", "slug", "url")
-
-
-class ContractSerializer(NetBoxModelSerializer):
-
-    url = serializers.HyperlinkedIdentityField(
-        view_name='plugins-api:netbox_aci-api:contract-detail',
-    )
-
-    vrfs_consume = VRFSerializer(nested=True, many=True, required=False, allow_null=True)
-    vrfs_provide = VRFSerializer(nested=True, many=True, required=False, allow_null=True)
-
-    class Meta:
-        model = models.contract_model.Contract
-        fields = (
-            'id',
-            'display',
-            'name',
-            'slug',
-            'description',
-            'scope',
-            'qos_class',
-            'target_dscp',
-            'vrfs_consume',
-            'vrfs_provide',
-            'created',
-            'last_updated',
-            'url',
-        )
-        brief_fields = ("id", "display", "name", "slug", "url")
-
-
-class ContractSubjectSerializer(NetBoxModelSerializer):
-
-    url = serializers.HyperlinkedIdentityField(
-        view_name='plugins-api:netbox_aci-api:contractsubject-detail',
-    )
-
-    contract = ContractSerializer(nested=True, required=False, allow_null=True)
-
-    class Meta:
-        model = models.contract_subject_model.ContractSubject
-        fields = (
-            'id',
-            'display',
-            'name',
-            'slug',
-            'description',
-            'contract',
-            'qos_priority',
-            'target_dscp',
-            'apply_both_directions',
-            'reverse_filter_ports',            
-            'created',
-            'last_updated',
-            'url',
-        )
-        brief_fields = ("id", "display", "name", "slug", "url")
-
-
-class ContractFilterSerializer(NetBoxModelSerializer):
-
-    url = serializers.HyperlinkedIdentityField(
-        view_name='plugins-api:netbox_aci-api:contractfilter-detail',
-    )
-
-    contractsubject = ContractSubjectSerializer(nested=True, required=False, allow_null=True)
-
-    class Meta:
-        model = models.contract_filter_model.ContractFilter
-        fields = (
-            'id',
-            'display',
-            'name',
-            'slug',
-            'description',
-            'contractsubject',
-            'directives',
-            'action',
-            'created',
-            'last_updated',
-            'url',
-        )
-        brief_fields = ("id", "display", "name", "slug", "url")
-
-
 class ContractFilterEntrySerializer(NetBoxModelSerializer):
 
     url = serializers.HyperlinkedIdentityField(
         view_name='plugins-api:netbox_aci-api:contractfilterentry-detail',
     )
-
-    contractfilter = ContractFilterSerializer(nested=True, required=False, allow_null=True)
 
     class Meta:
         model = models.contract_filter_entry_model.ContractFilterEntry
@@ -130,7 +21,6 @@ class ContractFilterEntrySerializer(NetBoxModelSerializer):
             'name',
             'slug',
             'description',
-            'contractfilter',
             'ether_type',
             'ip_protocol',
             'arp_flag',
@@ -145,6 +35,117 @@ class ContractFilterEntrySerializer(NetBoxModelSerializer):
         brief_fields = ("id", "display", "name", "slug", "url")
 
 
+class ContractFilterSerializer(NetBoxModelSerializer):
+
+    url = serializers.HyperlinkedIdentityField(
+        view_name='plugins-api:netbox_aci-api:contractfilter-detail',
+    )
+
+    entries = ContractFilterEntrySerializer(many=True, read_only=True, source='entry_filter')
+
+    class Meta:
+        model = models.contract_filter_model.ContractFilter
+        fields = (
+            'id',
+            'display',
+            'name',
+            'slug',
+            'description',
+            'directives',
+            'action',
+            'entries',
+            'created',
+            'last_updated',
+            'url',
+        )
+        brief_fields = ("id", "display", "name", "slug", "url")
+
+
+class ContractSubjectSerializer(NetBoxModelSerializer):
+
+    url = serializers.HyperlinkedIdentityField(
+        view_name='plugins-api:netbox_aci-api:contractsubject-detail',
+    )
+
+    filters = ContractFilterSerializer(many=True, read_only=True, source='filter_subject')
+
+    class Meta:
+        model = models.contract_subject_model.ContractSubject
+        fields = (
+            'id',
+            'display',
+            'name',
+            'slug',
+            'description',
+            'qos_priority',
+            'target_dscp',
+            'apply_both_directions',
+            'reverse_filter_ports',
+            'filters',
+            'created',
+            'last_updated',
+            'url',
+        )
+        brief_fields = ("id", "display", "name", "slug", "url")
+
+
+class ContractSerializer(NetBoxModelSerializer):
+
+    url = serializers.HyperlinkedIdentityField(
+        view_name='plugins-api:netbox_aci-api:contract-detail',
+    )
+
+    vrfs_consume = VRFSerializer(nested=True, many=True, required=False, allow_null=True)
+    vrfs_provide = VRFSerializer(nested=True, many=True, required=False, allow_null=True)
+    subjects = ContractSubjectSerializer(many=True, read_only=True, source='subject_contract')
+
+    class Meta:
+        model = models.contract_model.Contract
+        fields = (
+            'id',
+            'display',
+            'name',
+            'slug',
+            'description',
+            'scope',
+            'qos_class',
+            'target_dscp',
+            'vrfs_consume',
+            'vrfs_provide',
+            'subjects',
+            'created',
+            'last_updated',
+            'url',
+        )
+        brief_fields = ("id", "display", "name", "slug", "url")
+
+
+class DomainSerializer(NetBoxModelSerializer):
+
+    url = serializers.HyperlinkedIdentityField(
+        view_name='plugins-api:netbox_aci-api:domain-detail',
+    )
+
+    vlan_pool = VLANGroupSerializer(nested=True, required=False, allow_null=True)
+
+    class Meta:
+        model = models.domain_model.Domain
+        fields = (
+            'id',
+            'display',
+            'name',
+            'slug',
+            'description',
+            'domain_type',          
+            'vlan_pool',
+            'pool_allocation_mode',
+            'created',
+            'last_updated',
+            'url',
+        )
+        brief_fields = ("id", "display", "name", "slug", "url")
+
+
 class L3OutSerializer(NetBoxModelSerializer):
 
     url = serializers.HyperlinkedIdentityField(
@@ -152,7 +153,7 @@ class L3OutSerializer(NetBoxModelSerializer):
     )
 
     vrf = VRFSerializer(nested=True, required=False, allow_null=True)
-    domains = VLANGroupSerializer(nested=True, many=True, required=False, allow_null=True)
+    domains = DomainSerializer(nested=True, many=True, required=False, allow_null=True)
 
     class Meta:
         model = models.l3out_model.L3Out
@@ -208,10 +209,9 @@ class EndPointGroupSerializer(NetBoxModelSerializer):
         view_name='plugins-api:netbox_aci-api:endpointgroup-detail',
     )
 
-    applicationprofile = ApplicationProfileSerializer(nested=True)
     bridgedomain = BridgeDomainSerializer(nested=True, required=False, allow_null=True)
     subnets = IPAddressSerializer(nested=True, many=True, required=False, allow_null=True)
-    domains = VLANGroupSerializer(nested=True, many=True, required=False, allow_null=True)
+    domains = DomainSerializer(nested=True, many=True, required=False, allow_null=True)
     contracts_provide = ContractSerializer(nested=True, many=True, required=False, allow_null=True)
     contracts_consume = ContractSerializer(nested=True, many=True, required=False, allow_null=True)
 
@@ -226,7 +226,6 @@ class EndPointGroupSerializer(NetBoxModelSerializer):
             'created',
             'last_updated',
             'url',
-            'applicationprofile',
             'domains',
             'contracts_provide',
             'contracts_consume',
@@ -261,7 +260,6 @@ class EndPointSecurityGroupSerializer(NetBoxModelSerializer):
             'created',
             'last_updated',
             'url',
-            'applicationprofile',
             'contracts_provide',
             'contracts_consume',
             'epgs_selector',
@@ -271,30 +269,57 @@ class EndPointSecurityGroupSerializer(NetBoxModelSerializer):
         brief_fields = ("id", "display", "name", "slug", "url")
 
 
-class DomainSerializer(NetBoxModelSerializer):
+class ApplicationProfileSerializer(NetBoxModelSerializer):
 
     url = serializers.HyperlinkedIdentityField(
-        view_name='plugins-api:netbox_aci-api:domain-detail',
+        view_name='plugins-api:netbox_aci-api:applicationprofile-detail',
     )
 
-    vlan_pool = VLANGroupSerializer(nested=True, required=False, allow_null=True)
+    tenant = TenantSerializer(nested=True)
+    epgs = EndPointGroupSerializer(many=True, read_only=True, source='epg_applicationprofile')
+    esgs = EndPointSecurityGroupSerializer(many=True, read_only=True, source='esg_applicationprofile')
 
     class Meta:
-        model = models.domain_model.Domain
+        model = models.ap_model.ApplicationProfile
         fields = (
             'id',
             'display',
             'name',
             'slug',
             'description',
-            'domain_type',          
-            'vlan_pool',
-            'pool_allocation_mode',
             'created',
             'last_updated',
             'url',
+            'tenant',
+            'epgs',
+            'esgs',
         )
         brief_fields = ("id", "display", "name", "slug", "url")
+
+
+class AAEPStaticBindingSerializer(NetBoxModelSerializer):
+
+    url = serializers.HyperlinkedIdentityField(
+        view_name='plugins-api:netbox_aci-api:aaepstaticbinding-detail',
+    )
+
+    tenant = TenantSerializer(nested=True)
+    applicationprofile = ApplicationProfileSerializer(nested=True)
+    epg = EndPointGroupSerializer(nested=True)
+
+    class Meta:
+        model = models.aaep_model.AAEPStaticBinding
+        fields = (
+            'id',
+            'created',
+            'last_updated',
+            'tenant',
+            'applicationprofile',
+            'epg',
+            'encap',
+            'mode',
+        )
+        brief_fields = ("id", "url")
 
 
 class AAEPSerializer(NetBoxModelSerializer):
@@ -303,7 +328,8 @@ class AAEPSerializer(NetBoxModelSerializer):
         view_name='plugins-api:netbox_aci-api:aaep-detail',
     )
 
-    domains = VLANGroupSerializer(nested=True, many=True, required=False, allow_null=True)
+    domains = DomainSerializer(nested=True, many=True, required=False, allow_null=True)
+    static_bindings = AAEPStaticBindingSerializer(many=True, read_only=True, source='aaepstaticbinding_aaep')
 
     class Meta:
         model = models.aaep_model.AAEP
@@ -318,35 +344,9 @@ class AAEPSerializer(NetBoxModelSerializer):
             'url',
             'infrastructure_vlan',
             'domains',
+            'static_bindings',
         )
         brief_fields = ("id", "display", "name", "slug", "url")
-
-
-class AAEPStaticBindingSerializer(NetBoxModelSerializer):
-
-    url = serializers.HyperlinkedIdentityField(
-        view_name='plugins-api:netbox_aci-api:aaepstaticbinding-detail',
-    )
-
-    aaep = AAEPSerializer(nested=True)
-    tenant = TenantSerializer(nested=True)
-    applicationprofile = ApplicationProfileSerializer(nested=True)
-    epg = EndPointGroupSerializer(nested=True)
-
-    class Meta:
-        model = models.aaep_model.AAEPStaticBinding
-        fields = (
-            'id',
-            'aaep',
-            'created',
-            'last_updated',
-            'tenant',
-            'applicationprofile',
-            'epg',
-            'encap',
-            'mode',
-        )
-        brief_fields = ("id", "url")
 
 
 class LinkLevelSerializer(NetBoxModelSerializer):

@@ -32,6 +32,7 @@ class EndPointSecurityGroup(ACIDefault):
     applicationprofile = models.ForeignKey(
         ap_model.ApplicationProfile,
         on_delete=models.PROTECT,
+        related_name="esg_applicationprofile",
         null=True,
     )
 

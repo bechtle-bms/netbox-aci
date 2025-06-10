@@ -5,8 +5,8 @@ Define the django model.
 from django.core.validators import RegexValidator
 from django.urls import reverse
 from django.db import models
+from netbox.models import NetBoxModel
 from .. choices import ContractQoSClassChoices, ContractTargetDSCPChoices
-from . default_model import ACIDefault
 from . contract_model import Contract
 
 __all__ = (
@@ -19,14 +19,29 @@ input_validation = RegexValidator(
 )
 
 
-class ContractSubject(ACIDefault):
+class ContractSubject(NetBoxModel):
     """
     This class definition defines a Django model for a contract subject.
-    """    
+    """
+    slug = models.SlugField(
+        verbose_name=('slug'),
+        max_length=100,
+        null=True,
+        blank=True,
+    )
+
+    description = models.CharField(
+        max_length=100,
+        blank=True,
+    )
+
+    comments = models.TextField(
+        blank=True
+    )
+
     name = models.CharField(
         verbose_name=('name'),
         max_length=50,
-        unique=True,
         validators=[input_validation],
     )
 
@@ -61,6 +76,16 @@ class ContractSubject(ACIDefault):
         ordering = ["name"]
         verbose_name = "Contract Subject"
         verbose_name_plural = "Contract Subjects"
+        constraints = [
+            models.UniqueConstraint(
+                fields=['name', 'contract'],
+                name='unique_subject_per_contract'
+            ),
+            models.UniqueConstraint(
+                fields=['slug', 'contract'],
+                name='unique_slug_per_contract'
+            ),
+        ]
 
     #Methods
     def __str__(self):
