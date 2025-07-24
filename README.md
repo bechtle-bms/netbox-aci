@@ -30,6 +30,7 @@ Below listed plugin Versions has been tested with its corresponding NetBox Versi
 | 4.1.3       | >= 0.0.1  |
 | 4.2.0       | >= 0.0.1  |
 | 4.3.1       | >= 0.0.2  |
+| 4.3.4       | >= 0.0.6  |
 
 ## Installation
 
