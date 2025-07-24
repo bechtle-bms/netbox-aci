@@ -1,3 +1,8 @@
+## 0.0.6 - (2025-07-24)
+* Support for NetBox 4.3.4
+### Fixed
+* Added MANIFEST.in to fix missing templates issue #9.
+
 ## 0.0.5 - (2025-06-10)
 ### Features
 * Updated contract handling. Updated API parent child object hierarchy.
