@@ -1,3 +1,6 @@
+## 0.0.7 - (2026-02-27)
+* Support for NetBox 4.5.3
+
 ## 0.0.6 - (2025-07-24)
 * Support for NetBox 4.3.4
 ### Fixed

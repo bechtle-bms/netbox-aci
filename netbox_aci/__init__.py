@@ -1,4 +1,4 @@
-__version__ = '0.0.6'
+__version__ = '0.0.7'
 __author__ = """Marc-Aurel Mohr-Lenné"""
 
 from netbox.plugins import PluginConfig
@@ -12,6 +12,6 @@ class NetBoxAciConfig(PluginConfig):
     author = __author__
     base_url = 'aci'
     min_version = "4.1.3"
-    max_version = "4.3.4"
+    max_version = "4.5.3"
 
 config = NetBoxAciConfig

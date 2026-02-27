@@ -2,14 +2,14 @@
 # https://www.python.org/dev/peps/pep-0518/
 
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name =  "netbox-aci"
-version = "0.0.6"
+version = "0.0.7"
 authors = [
-    {name = "Marc-Aurel Mohr-Lenné"},
+    {name = "Marc-Aurel Mohr-Lenné"}
 ]
 description = "A NetBox plugin to integrate Cisco ACI (Application Centric Infrastructure) with NetBox."
 readme = "README.md"
